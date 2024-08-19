@@ -1,6 +1,6 @@
 {
 	"AppSettings": {
-		"EVENT_HUB_CONNECTION_STRING": "abc",
-		"EVENT_HUB_INSTANCE_NAME": "efg"
+		"EVENT_HUB_CONNECTION_STRING": "",
+		"EVENT_HUB_INSTANCE_NAME": ""
 	}
 }
