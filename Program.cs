@@ -10,6 +10,8 @@ var configuration = new ConfigurationBuilder()
 var EVENT_HUB_CONNECTION_STRING = configuration["AppSettings:EVENT_HUB_CONNECTION_STRING"];
 var EVENT_HUB_INSTANCE_NAME = configuration["AppSettings:EVENT_HUB_INSTANCE_NAME"];
 
+Console.WriteLine($"Event hub instance: {EVENT_HUB_INSTANCE_NAME}");
+
 await using (var consumerClient = new EventHubConsumerClient(
     EventHubConsumerClient.DefaultConsumerGroupName, 
     EVENT_HUB_CONNECTION_STRING, 
@@ -19,6 +21,6 @@ await using (var consumerClient = new EventHubConsumerClient(
     await foreach (PartitionEvent partitionEvent in consumerClient.ReadEventsAsync())
     {
         string data = Encoding.UTF8.GetString(partitionEvent.Data.EventBody.ToArray());
-        Console.WriteLine($"Message received. Partition: '{partitionEvent.Partition.PartitionId}', Data: '{data}'");
+        Console.WriteLine($"Message received. PartitionID: {partitionEvent.Partition.PartitionId}, PartitionKey:{partitionEvent.Data.PartitionKey}, Data: {data}");
     }
 }
